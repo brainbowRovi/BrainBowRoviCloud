@@ -19,10 +19,10 @@ namespace BrainBowTestWebAPI.Models
         public JObject GetMovieByKeyword(string Keyword)
         {
             string OAuthSessionToken = GetAccessTokenFromCode( RoviAppId, RoviAppSecretKey );
-             return GetRovi_Metadata( OAuthSessionToken, Keyword);
+             return GetRovi_Movie_Metadata( OAuthSessionToken, Keyword);
         }
 
-        private static JObject GetRovi_Metadata(string oAuthSessionToken, string keyword)
+        private static JObject GetRovi_Movie_Metadata(string oAuthSessionToken, string keyword)
         {
             string roviSearchMovieByKeywordURL =
                 string.Format(
@@ -54,6 +54,47 @@ namespace BrainBowTestWebAPI.Models
             return jo;
 //            string response = requestRoviData( userLikeUrl );
 //            Console.WriteLine( response );
+            //ParseResponse( response );
+        }
+
+        public JObject GetCelebByName(string Keyword)
+        {
+            string OAuthSessionToken = GetAccessTokenFromCode(RoviAppId, RoviAppSecretKey);
+            return GetRovi_Celeb_Metadata(OAuthSessionToken, Keyword);
+        }
+
+        private static JObject GetRovi_Celeb_Metadata(string oAuthSessionToken, string keyword)
+        {
+            string roviSearchCelebByNameURL =
+                string.Format(
+                    "http://api.rovicorp.com/search/v2.1/video/search?entitytype=movie&query={0}&rep=1&facet=genre&size=1&offset=0&language=en&country=US&format=json&apikey={1}&sig={2}",
+                    keyword, RoviAppId, oAuthSessionToken);
+            //"http://sr-prod.rovicorp.com:8080/rovi-snr-ws-2/rest/phoenix_global/search?size=20&offset=0&modifiers=restriction%3bcount&types=CosmoMovie&fields=name&query=hanks";
+
+            string results = string.Empty;
+
+            try
+            {
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(roviSearchCelebByNameURL);
+                HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+
+                StreamReader sr = new StreamReader(resp.GetResponseStream());
+                results = sr.ReadToEnd();
+
+                sr.Close();
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("400"))
+                {
+                    //invalid reponse
+                }
+            }
+
+            JObject jo = JObject.Parse(results);
+            return jo;
+            //            string response = requestRoviData( userLikeUrl );
+            //            Console.WriteLine( response );
             //ParseResponse( response );
         }
 

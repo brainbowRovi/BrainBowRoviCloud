@@ -18,10 +18,25 @@ namespace BrainBowTestWebAPI.Controllers
         }
 
         // GET api/values/5
-        public JObject Get(string keyword)
+        //public JObject Get(string keyword)
+        //{
+        //    RoviAPI roviAPI = new RoviAPI( );
+        //    return roviAPI.GetMovieByKeyword(keyword);
+        //}
+
+        // GET api/values/5
+        public JObject Get(string typeofsearch, string filtercriteria)
         {
-            RoviAPI roviAPI = new RoviAPI( );
-            return roviAPI.GetMovieByKeyword(keyword);
+            if (typeofsearch == "movie")
+            {
+                RoviAPI roviAPI = new RoviAPI();
+                return roviAPI.GetMovieByKeyword(filtercriteria);
+            }
+            else
+            {
+                RoviAPI roviAPI = new RoviAPI();
+                return roviAPI.GetCelebByName(filtercriteria);
+            }
         }
 
         // POST api/values
