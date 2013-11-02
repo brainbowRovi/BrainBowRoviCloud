@@ -17,13 +17,7 @@ namespace BrainBowTestWebAPI.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
-        //public JObject Get(string keyword)
-        //{
-        //    RoviAPI roviAPI = new RoviAPI( );
-        //    return roviAPI.GetMovieByKeyword(keyword);
-        //}
-
+        
         // GET api/values/5
         public JObject Get(string typeofsearch, string filtercriteria)
         {
