@@ -67,7 +67,7 @@ namespace BrainBowTestWebAPI.Models
         {
             string roviSearchCelebByNameURL =
                 string.Format(
-                    "http://api.rovicorp.com/search/v2.1/video/search?entitytype=movie&query=%2A&rep=1&filter=genreid%3A{0}&size=1&offset=0&language=en&country=US&format=json&apikey={1}&sig={2}",
+                    "http://api.rovicorp.com/search/v2.1/amgvideo/search?entitytype=movie&query=%2A&rep=1&filter=genreid%3A{0}&size=1&offset=0&language=en&country=US&format=json&apikey={1}&sig={2}",
                     keyword, RoviAppId, oAuthSessionToken);
             //"http://sr-prod.rovicorp.com:8080/rovi-snr-ws-2/rest/phoenix_global/search?size=20&offset=0&modifiers=restriction%3bcount&types=CosmoMovie&fields=name&query=hanks";
 
