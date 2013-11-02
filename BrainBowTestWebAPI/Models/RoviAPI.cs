@@ -30,7 +30,6 @@ namespace BrainBowTestWebAPI.Models
                 string.Format(
                     "http://api.rovicorp.com/search/v2.1/amgvideo/search?entitytype=movie&query=%2A&rep=1&filter=genreid%3A{0}&include=cast&size=20&offset={3}&language=en&country=US&format=json&apikey={1}&sig={2}",
                     keyword, RoviAppId, oAuthSessionToken, offset);
-            //"http://sr-prod.rovicorp.com:8080/rovi-snr-ws-2/rest/phoenix_global/search?size=20&offset=0&modifiers=restriction%3bcount&types=CosmoMovie&fields=name&query=hanks";
 
             string results = string.Empty;
 
@@ -76,11 +75,12 @@ namespace BrainBowTestWebAPI.Models
 
         private static JObject GetRovi_Celeb_Metadata(string oAuthSessionToken, string keyword)
         {
-            string roviSearchCelebByNameURL =
+            string offset = RandNumber(1, 100).ToString();
+
+            string roviSearchMovieByKeywordURL =
                 string.Format(
-                    "http://api.rovicorp.com/search/v2.1/amgvideo/search?entitytype=movie&query=%2A&rep=1&filter=genreid%3A{0}&size=20&offset=0&language=en&country=US&format=json&apikey={1}&sig={2}",
-                    keyword, RoviAppId, oAuthSessionToken);
-            //"http://sr-prod.rovicorp.com:8080/rovi-snr-ws-2/rest/phoenix_global/search?size=20&offset=0&modifiers=restriction%3bcount&types=CosmoMovie&fields=name&query=hanks";
+                    "http://api.rovicorp.com/search/v2.1/amgvideo/search?entitytype=credit&query=%2A&rep=1&include=filmbio&size=20&offset={3}&language=en&country=US&format=json&apikey={1}&sig={2}",
+                    keyword, RoviAppId, oAuthSessionToken, offset);
 
             string results = string.Empty;
 
