@@ -79,7 +79,7 @@ namespace BrainBowTestWebAPI.Models
 
             string roviSearchCelebByNameURL =
                 string.Format(
-                    "http://api.rovicorp.com/search/v2.1/amgvideo/search?entitytype=credit&query=%2A&rep=1&include=filmbio&size=20&offset={3}&language=en&country=US&format=json&apikey={1}&sig={2}",
+                    "http://api.rovicorp.com/search/v2.1/amgvideo/search?entitytype=credit&query=%2A&rep=1&include=moviembio&size=20&offset={3}&language=en&country=US&format=json&apikey={1}&sig={2}",
                     keyword, RoviAppId, oAuthSessionToken, offset);
 
             string results = string.Empty;
