@@ -28,7 +28,7 @@ namespace BrainBowTestWebAPI.Models
 
             string roviSearchMovieByKeywordURL =
                 string.Format(
-                    "http://api.rovicorp.com/search/v2.1/amgvideo/search?entitytype=movie&query=%2A&rep=1&filter=genreid%3A{0}&include=cast&size=20&offset={3}&language=en&country=US&format=json&apikey={1}&sig={2}",
+                    "http://api.rovicorp.com/search/v2.1/amgvideo/search?entitytype=movie&query=%2A&rep=1&filter=genreid%3A{0}&include=cast&size=20&offset={3}&language=en&country=US&filter=mpaa:PG13&format=json&apikey={1}&sig={2}",
                     keyword, RoviAppId, oAuthSessionToken, offset);
 
             string results = string.Empty;
