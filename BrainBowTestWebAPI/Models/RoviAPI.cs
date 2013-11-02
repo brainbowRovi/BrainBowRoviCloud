@@ -24,10 +24,12 @@ namespace BrainBowTestWebAPI.Models
 
         private static JObject GetRovi_Movie_Metadata(string oAuthSessionToken, string keyword)
         {
+            string offset = RandNumber(1,300).ToString();
+
             string roviSearchMovieByKeywordURL =
                 string.Format(
-                    "http://api.rovicorp.com/search/v2.1/amgvideo/search?entitytype=movie&query=%2A&rep=1&filter=genreid%3A{0}&include=cast&size=1&offset=0&language=en&country=US&format=json&apikey={1}&sig={2}",
-                    keyword, RoviAppId, oAuthSessionToken);
+                    "http://api.rovicorp.com/search/v2.1/amgvideo/search?entitytype=movie&query=%2A&rep=1&filter=genreid%3A{0}&include=cast&size=1&offset={3}&language=en&country=US&format=json&apikey={1}&sig={2}",
+                    keyword, RoviAppId, oAuthSessionToken, offset);
             //"http://sr-prod.rovicorp.com:8080/rovi-snr-ws-2/rest/phoenix_global/search?size=20&offset=0&modifiers=restriction%3bcount&types=CosmoMovie&fields=name&query=hanks";
 
             string results = string.Empty;
@@ -55,6 +57,15 @@ namespace BrainBowTestWebAPI.Models
 //            string response = requestRoviData( userLikeUrl );
 //            Console.WriteLine( response );
             //ParseResponse( response );
+        }
+
+        public static int RandNumber(int Low, int High)
+        {
+            Random rndNum = new Random(int.Parse(Guid.NewGuid().ToString().Substring(0, 8), System.Globalization.NumberStyles.HexNumber));
+
+            int rnd = rndNum.Next(Low, High);
+
+            return rnd;
         }
 
         public JObject GetCelebByName(string Keyword)
