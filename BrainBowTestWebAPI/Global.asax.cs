@@ -23,7 +23,7 @@ namespace BrainBowTestWebAPI
             FilterConfig.RegisterGlobalFilters( GlobalFilters.Filters );
             RouteConfig.RegisterRoutes( RouteTable.Routes );
             BundleConfig.RegisterBundles( BundleTable.Bundles );
-            FormatterConfig.RegisterFormatters( GlobalConfiguration.Configuration.Formatters ); bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbv,
+            FormatterConfig.RegisterFormatters( GlobalConfiguration.Configuration.Formatters ); 
         }
     }
 }
